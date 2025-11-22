@@ -558,6 +558,29 @@ section {
     color: #ea580c;
 }
 
+/* Certificate with Image */
+.certificate-with-image {
+    display: block;
+    padding: 0;
+    overflow: hidden;
+}
+
+.certificate-with-image a {
+    display: block;
+    text-decoration: none;
+}
+
+.certificate-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: var(--transition);
+}
+
+.certificate-with-image:hover .certificate-image {
+    transform: scale(1.05);
+}
+
 /* Achievements Section */
 .achievements-section {
     margin-top: 4rem;
