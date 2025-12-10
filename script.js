@@ -1,5 +1,99 @@
 // Mobile Navigation Toggle
 document.addEventListener('DOMContentLoaded', function() {
+    // Dark Mode Toggle Functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlElement = document.documentElement;
+    
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    htmlElement.setAttribute('data-theme', currentTheme);
+    
+    // Update toggle icon based on theme
+    function updateThemeIcon() {
+        if (themeToggle) {
+            const theme = htmlElement.getAttribute('data-theme');
+            themeToggle.innerHTML = theme === 'dark' 
+                ? '<i class="fas fa-sun"></i>' 
+                : '<i class="fas fa-moon"></i>';
+        }
+    }
+    
+    updateThemeIcon();
+    
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon();
+        });
+    }
+    
+    // Card Click Functionality - Make entire cards clickable
+    function makeCardsClickable() {
+        // Helper function to check if click should be handled by card
+        function shouldHandleCardClick(event) {
+            const target = event.target;
+            // Don't handle if clicking on a link or button
+            return target.tagName !== 'A' && 
+                   target.tagName !== 'BUTTON' && 
+                   !target.closest('a') && 
+                   !target.closest('button');
+        }
+        
+        // Project cards - look for first GitHub link
+        document.querySelectorAll('.project-card').forEach(card => {
+            const link = card.querySelector('.project-link');
+            if (link && !card.hasAttribute('href')) {
+                card.addEventListener('click', function(e) {
+                    if (shouldHandleCardClick(e)) {
+                        window.open(link.href, '_blank');
+                    }
+                });
+            }
+        });
+        
+        // Certificate cards
+        document.querySelectorAll('.certificate-card').forEach(card => {
+            const link = card.querySelector('.view-credential');
+            if (link && !card.hasAttribute('href')) {
+                card.addEventListener('click', function(e) {
+                    if (shouldHandleCardClick(e)) {
+                        window.open(link.href, '_blank');
+                    }
+                });
+            }
+        });
+        
+        // Achievement items
+        document.querySelectorAll('.achievement-item').forEach(item => {
+            const link = item.querySelector('.achievement-link');
+            if (link && !item.hasAttribute('href')) {
+                item.addEventListener('click', function(e) {
+                    if (shouldHandleCardClick(e)) {
+                        window.open(link.href, '_blank');
+                    }
+                });
+            }
+        });
+        
+        // Assignment cards
+        document.querySelectorAll('.assignment-card').forEach(card => {
+            const link = card.querySelector('.project-link');
+            if (link && !card.hasAttribute('href')) {
+                card.addEventListener('click', function(e) {
+                    if (shouldHandleCardClick(e)) {
+                        window.open(link.href, '_blank');
+                    }
+                });
+            }
+        });
+    }
+    
+    makeCardsClickable();
+    
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
     
