@@ -33,12 +33,22 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Card Click Functionality - Make entire cards clickable
     function makeCardsClickable() {
-        // Project cards
+        // Helper function to check if click should be handled by card
+        function shouldHandleCardClick(event) {
+            const target = event.target;
+            // Don't handle if clicking on a link or button
+            return target.tagName !== 'A' && 
+                   target.tagName !== 'BUTTON' && 
+                   !target.closest('a') && 
+                   !target.closest('button');
+        }
+        
+        // Project cards - look for first GitHub link
         document.querySelectorAll('.project-card').forEach(card => {
-            const link = card.querySelector('.project-link[href*="github.com"]');
+            const link = card.querySelector('.project-link');
             if (link && !card.hasAttribute('href')) {
                 card.addEventListener('click', function(e) {
-                    if (e.target.tagName !== 'A') {
+                    if (shouldHandleCardClick(e)) {
                         window.open(link.href, '_blank');
                     }
                 });
@@ -50,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const link = card.querySelector('.view-credential');
             if (link && !card.hasAttribute('href')) {
                 card.addEventListener('click', function(e) {
-                    if (e.target.tagName !== 'A') {
+                    if (shouldHandleCardClick(e)) {
                         window.open(link.href, '_blank');
                     }
                 });
@@ -62,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const link = item.querySelector('.achievement-link');
             if (link && !item.hasAttribute('href')) {
                 item.addEventListener('click', function(e) {
-                    if (e.target.tagName !== 'A') {
+                    if (shouldHandleCardClick(e)) {
                         window.open(link.href, '_blank');
                     }
                 });
@@ -74,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const link = card.querySelector('.project-link');
             if (link && !card.hasAttribute('href')) {
                 card.addEventListener('click', function(e) {
-                    if (e.target.tagName !== 'A') {
+                    if (shouldHandleCardClick(e)) {
                         window.open(link.href, '_blank');
                     }
                 });

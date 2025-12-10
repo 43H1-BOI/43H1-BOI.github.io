@@ -83,6 +83,7 @@ body {
     transition: var(--transition);
 }
 
+/* Dark mode navbar uses bg-white variable which changes to dark color in dark mode */
 [data-theme="dark"] .navbar {
     background: rgba(30, 41, 59, 0.95);
 }
